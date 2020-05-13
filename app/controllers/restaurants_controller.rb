@@ -1,7 +1,11 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy, :phone_number]
 
   # GET /restaurants
+  def phone_number
+    @phone_number = @restaurant.phone_number
+  end
+
   def index
     @restaurants = Restaurant.all
   end
@@ -53,6 +57,6 @@ class RestaurantsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def restaurant_params
-      params.require(:restaurant).permit(:name, :address, :category)
+      params.require(:restaurant).permit(:name, :address, :category, :phone_number)
     end
 end
